@@ -12,7 +12,7 @@ import bookingRouter from './routes/bookingRoutes.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
-const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+const frontendUrl = 'https://eventify-repo.onrender.com/' || 'http://localhost:5173';
 
 // Create HTTP Server
 const server = createServer(app);
