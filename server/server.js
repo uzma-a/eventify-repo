@@ -16,13 +16,13 @@ const port = process.env.PORT || 3000;
 // Create HTTP Server
 const server = createServer(app);
 const io = new Server(server, {
-  cors: { origin: ['https://eventify-frontend-3b2j.onrender.com'], credentials: true }
+  cors: { origin: ['http://localhost:5173'], credentials: true }
 });
 
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: ['https://eventify-frontend-3b2j.onrender.com'], credentials: true }));
+app.use(cors({ origin: ['http://localhost:5173'], credentials: true }));
 
 // Handle WebSocket Connection
 io.on('connection', (socket) => {
