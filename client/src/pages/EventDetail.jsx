@@ -19,6 +19,8 @@ const EventDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { isLoggedin } = useContext(AppContent); // Access auth state from context
+  const { backendUrl } = useContext(AppContent)
+  axios.defaults.withCredentials = true
 
   const event = events.find((event) => event.id === parseInt(id));
 
@@ -49,7 +51,7 @@ const EventDetail = () => {
     }
 
     try {
-      await axios.post("http://localhost:3000/api/bookings/book", {
+      await axios.post(backendUrl + "/api/bookings/book", {
         eventName: event.name,
         ...formData,
       });

@@ -10,9 +10,7 @@ import MoreEvent from "./MoreEvent";
 const Home = () => {
   const [events, setEvents] = useState([]);
 
-  const deleteEvent = (id) => {
-    setEvents(events.filter((event) => event.id !== id)); // Remove event by id
-  };
+  
 
   useEffect(() => {
     const savedEvents = localStorage.getItem("events");

@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { AppContent } from '../context/AppContext'
 
 const Dashboard = () => {
   const [bookings, setBookings] = useState([]);
 
+  const { backendUrl } = useContext(AppContent)
+  axios.defaults.withCredentials = true
+
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/bookings/all");
+        const response = await axios.get(backendUrl + "/api/bookings/all");
         setBookings(response.data);
       } catch (error) {
         console.error("Error fetching bookings:", error);
