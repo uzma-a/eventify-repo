@@ -31,11 +31,12 @@ export const register = async (req, res) => {
         console.log("Generated Token:", token);
 
         res.cookie('token', token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
-            maxAge: 7 * 24 * 60 * 60 * 1000,
-        });
+    httpOnly: true,
+    secure: true,  // ✅ Ensure HTTPS (Render requires this)
+    sameSite: 'none', // ✅ Allow cross-origin requests
+    maxAge: 7 * 24 * 60 * 60 * 1000
+});
+
 
         // Send welcome email
         const mailOptions = {
@@ -85,12 +86,12 @@ export const login = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
         res.cookie('token', token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: process.env.NODE_ENV === 'production' ?
-                'none' : 'strict',
-            maxAge: 7 * 24 * 60 * 60 * 1000
-        });
+    httpOnly: true,
+    secure: true,  // ✅ Ensure HTTPS (Render requires this)
+    sameSite: 'none', // ✅ Allow cross-origin requests
+    maxAge: 7 * 24 * 60 * 60 * 1000
+});
+
 
         return res.json({ success: true });
 
